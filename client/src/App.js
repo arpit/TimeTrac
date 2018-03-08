@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Moment from 'react-moment';
+import moment from 'moment'
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"]
 
@@ -10,25 +11,27 @@ class App extends Component {
 
   constructor(){
       super()
-      this.state = { tracks: [{
-        name: "trac1"
-      }, {
-        name: "trac2"
-      }] }
+      this.state = { weekOffset:0, tracks: []}
   }
 
-  getCurrentWeek(){
+  getWeekDates(offset){
     var curr = new Date(); // get current date
-    var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+    var first = curr.getDate() - curr.getDay() + offset*7; // First day is the day of the month - the day of the week
     var last = first + 6; // last day is the first day + 6
+    return {first: first, last: last}
+  }
 
-    var firstday = new Date(curr.setDate(first)).toUTCString();
-    var lastday = new Date(curr.setDate(last)).toUTCString();
+  getWeek(offset){
+    var curr = new Date();
+    let dates = this.getWeekDates(offset)
+    var firstday = new Date(curr.setDate(dates.first)).toUTCString();
+    var lastday = new Date(curr.setDate(dates.last)).toUTCString();
     return { start: firstday, end: lastday }
   }
 
   componentDidMount(){
-
+    this.setState({weekOffset:0})
+    this.loadDataFor(0)
   }
 
   trackDataToView(item){
@@ -43,19 +46,37 @@ class App extends Component {
   }
 
 
+  changeWeek(increment){
+    let nowWeek = this.state.weekOffset + increment;
+    this.setState({weekOffset: nowWeek})
+    this.loadDataFor( nowWeek )
+  }
+
+  loadDataFor(week){
+    let start = this.getWeek(week).start;
+    let m = moment(start).format("YYYY-MM-DD")
+  }
+
+  saveDataFor(week){
+
+  }
+
+
 
   render() {
 
     let nav = (
                   <div className="Main-Controls">
                     <div className="date_header">
-                    <span className="date_page_button date_left">&laquo;</span>
-                    <Moment format="MMM DD">{this.getCurrentWeek().start}</Moment>&nbsp;-&nbsp;
-                    <Moment format="MMM DD">{this.getCurrentWeek().end}</Moment>
-                    <span className="date_page_button date_right">&raquo;</span>
+                    <span className="date_page_button date_left" onClick={ ()=>{ this.changeWeek(-1) }}> &laquo;</span>
+                    <Moment format="MMM DD">{this.getWeek(this.state.weekOffset).start}</Moment>&nbsp;-&nbsp;
+                    <Moment format="MMM DD">{this.getWeek(this.state.weekOffset).end}</Moment>
+                    <span className="date_page_button date_right"
+                          onClick={ ()=>{ this.changeWeek(1) }}>&raquo;</span>
                     </div>
-
+                    <a href="#" className="Button save">Save</a>
                     <a href="#" className="Button new-track-button">New Track</a>
+
                   </div>
                  )
     let header_cells = days.map( (day)=>{
