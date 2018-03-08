@@ -1,5 +1,12 @@
+*{
+  margin:0;
+  padding:0;
+  border:0;
+}
 .App {
-  text-align: center;
+  background: #efefef;
+  width: 100%;
+  height: 100vh;
 }
 
 .App-logo {
@@ -9,14 +16,106 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 50px;
   padding: 20px;
   color: white;
 }
 
-.App-intro {
-  font-size: large;
+.App-content{
+  width: 900px;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid #ddd;
+
 }
+
+.Main-Controls{
+  padding: 20px;
+  position: relative;
+}
+
+.date_header{
+  display: inline-block;
+  font-weight:bold;
+}
+.date_page_button{
+  padding:1px 5px;
+  margin:0 5px;
+  border-radius: 5px;
+  display: inline-block;
+  border: 1px solid #dedede;
+}
+
+.new-track-button{
+  position: absolute;
+  right: 10px;
+}
+
+
+.tracks{
+  border-top:1px solid #ccc;
+
+}
+
+.tracks th{
+  height:40px;
+}
+
+
+.Track-Row{
+  background: #FFF7DC;
+  height: 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.Track-Row td{
+  border-left: 1px solid #ccc;
+  text-align: center;
+}
+
+.Track-Row > td{
+  text-align: left;
+  border:none;
+  padding-left: 20px;
+}
+
+.Track-Row input{
+  width: 40px;
+  border:1px solid #ccc;
+  height: 25px;
+  border-radius: 2px;
+}
+
+
+.Button {
+	box-shadow: 0px 1px 0px 0px #f0f7fa;
+	background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#33bdef', endColorstr='#019ad2',GradientType=0);
+	background-color:#33bdef;
+	border-radius:2px;
+	border:1px solid #057fd0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #5b6178;
+}
+.Button:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#019ad2', endColorstr='#33bdef',GradientType=0);
+	background-color:#019ad2;
+}
+.Button:active {
+	position:relative;
+	top:1px;
+}
+
+
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

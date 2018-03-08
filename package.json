@@ -8,7 +8,9 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "moment": "^2.21.0",
+    "react-moment": "^0.7.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
