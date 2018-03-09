@@ -10,7 +10,9 @@
   "dependencies": {
     "express": "^4.16.2",
     "moment": "^2.21.0",
-    "react-moment": "^0.7.0"
+    "react-moment": "^0.7.0",
+    "sequelize": "^4.35.2",
+    "sqlite3": "^3.1.13"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
