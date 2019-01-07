@@ -10,14 +10,19 @@ class WeekView extends Component{
 
   constructor(props){
     super(props)
-    let track = new Track("Jellos")
-
-    this.state = { weekOffset:0, tracks: [track]}
+    this.state = { weekOffset:0, tracks: []}
   }
 
   componentDidMount(){
+    this.loadTracks()
     this.setState({weekOffset:0})
     this.loadDataFor(0)
+  }
+
+  loadTracks(){
+    fetch('/api/tracks').then( (response)=>{ return response.json() }   ).
+        then((json)=>{ this.setState({tracks: json.tracks})}).
+        catch(e => alert("Error loading tracks"))
   }
 
   trackDataToView(item){
