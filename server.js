@@ -69,7 +69,9 @@ app.post('/api/tracks', (req, res) => {
 })
 
 app.get('/api/tracks', (req, res) => {
-  Track.findAll({}).then(items => {
+  Track.findAll({
+    attributes: ['id', 'name']
+  }).then(items => {
     res.send({tracks:items})
   })
 })
