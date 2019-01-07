@@ -7,8 +7,10 @@
     "moment": "^2.21.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-jsonschema-form": "^1.0.6",
     "react-moment": "^0.7.0",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "react-s-alert": "^1.4.1"
   },
   "proxy": "http://localhost:5000/",
   "devDependencies": {

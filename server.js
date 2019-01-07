@@ -61,6 +61,12 @@ function setup(){
 }
 
 app.post('/api/tracks', (req, res) => {
+
+  if(req.body['name'] == null){
+    res.send({status: "Error"})
+    return
+  }
+
   Track.create({name:req.body['name']}).then( ()=>{
     res.send({ status:'saved', week_of: req.body['week_of'], data: req.body['data'] });
   } ).catch((err) => {

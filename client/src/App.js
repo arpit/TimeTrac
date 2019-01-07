@@ -7,6 +7,11 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import WeekView from './components/week_view'
 import NewTrackForm from './components/new_track_form'
 
+import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+
+
 class App extends Component {
 
   constructor(){
@@ -52,6 +57,7 @@ class App extends Component {
             </div>
           </div>
         </Router>
+        <Alert stack={{limit: 3}} />
       </div>
     );
   }
