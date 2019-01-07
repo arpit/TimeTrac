@@ -24,6 +24,14 @@ var sequelize = new Sequelize('database', process.env.DB_USER, process.env.DB_PA
 sequelize.authenticate()
   .then(function(err) {
     console.log('Connection has been established successfully.');
+
+    Track = sequelize.define('track', {
+      name:{
+        type:Sequelize.STRING
+      }
+    })
+
+
     // define a new table 'users'
     History = sequelize.define('history', {
       week_of: {
@@ -40,12 +48,31 @@ sequelize.authenticate()
   });
 
 function setup(){
+
+  Track.sync()
+    .then(function(d){
+      console.log("synced track", d)
+    });
+
   History.sync()
     .then(function(d){
-      console.log("synced", d)
+      console.log("synced history", d)
     });
 }
 
+app.post('/api/tracks', (req, res) => {
+  Track.create({name:req.body['name']}).then( ()=>{
+    res.send({ status:'saved', week_of: req.body['week_of'], data: req.body['data'] });
+  } ).catch((err) => {
+    res.send({error: err})
+  })
+})
+
+app.get('/api/tracks', (req, res) => {
+  Track.findAll({}).then(items => {
+    res.send({tracks:items})
+  })
+})
 
 app.post('/api/history', (req, res) => {
   History.create({ week_of: req.body['week_of'], data: req.body['data']}).then( ()=>{
